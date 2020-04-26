@@ -5,8 +5,38 @@
     <router-link class="item-link" v-if="isLink" :to="item.source">
       {{ item.text }}
     </router-link>
-    <a class="item-dropdown-name" v-if="isDropdown">{{ item.text }}</a>
-    <div class="item-dropdown" v-if="isDropdown">
+    <a
+      class="item-dropdown-name"
+      v-if="isDropdown"
+      @click="dropdownOpen = !dropdownOpen"
+    >
+      {{ item.text }}
+      <span
+        data-v-7ce9b454=""
+        role="img"
+        aria-label="ChevronRight icon"
+        class="chevron mdi mdi-chevron-right transition"
+        :class="{ 'is-open': dropdownOpen }"
+        ><svg
+          data-v-7ce9b454=""
+          fill="currentColor"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <!---->
+          <path
+            data-v-7ce9b454=""
+            d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
+          ></path></svg
+      ></span>
+    </a>
+    <div
+      class="item-dropdown transition"
+      v-if="isDropdown"
+      :class="{ 'is-open': dropdownOpen }"
+    >
       <NavItem
         v-for="(newItem, idx) in item.children"
         :key="idx"
@@ -17,12 +47,19 @@
 </template>
 
 <script>
+// import ChevronRight from "mdi-vue/ChevronRight.vue";
 export default {
   name: "NavItem",
   components: {
     NavItem: () => import("./NavItem.vue"),
+    // ChevronRight,
   },
   props: ["item"],
+  data() {
+    return {
+      dropdownOpen: false,
+    };
+  },
   computed: {
     isTitle() {
       if (typeof this.item === "string") {
@@ -54,6 +91,8 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  border-radius: 5px;
+  overflow: hidden;
   .item-title {
     margin-bottom: 0.5em;
     font-size: 0.8rem;
@@ -67,23 +106,45 @@ export default {
     text-decoration: none;
     &:hover {
       background: #f6f8fa;
+      text-decoration: underline;
+      text-decoration-color: #ff6768;
     }
   }
   .item-dropdown-name {
     padding: 0.2em 1.6em;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    grid-template-rows: 1fr;
+    grid-template-areas: ". chevron";
     &:hover {
       background: #f6f8fa;
+    }
+    .chevron {
+      grid-area: chevron;
+      &.is-open {
+        transform: rotate(90deg);
+      }
     }
   }
   .item-dropdown {
     padding-left: 0.4em;
     // background: #17223b;
+    max-height: 0;
+    &.is-open {
+      max-height: 10000vh;
+    }
   }
   &.clickable {
     cursor: pointer;
   }
   .router-link-active {
+    background: #f6f8fa !important;
+    cursor: default;
     color: #ff6768;
+    text-decoration: none !important;
+  }
+  .transition {
+    transition: all 0.4s ease;
   }
 }
 // ul {

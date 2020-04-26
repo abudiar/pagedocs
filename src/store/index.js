@@ -45,8 +45,13 @@ export default new Vuex.Store({
       const navItems = payload;
       for (let i in navItems) {
         if (navItems[i].source != undefined && navItems[i].source != '') {
-          const page = await dispatch('getPage', navItems[i].source);
-          navItems[i]['parsedSource'] = page.data;
+          try {
+            const page = await dispatch('getPage', navItems[i].source);
+            navItems[i]['parsedSource'] = page.data;
+          }
+          catch (err) {
+            console.log(err);
+          }
         }
         if (navItems[i].children != undefined) {
           navItems[i].children = await dispatch('parseSources', navItems[i].children);

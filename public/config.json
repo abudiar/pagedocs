@@ -16,7 +16,7 @@
       "children": [
         {
           "text": "Page 1",
-          "source": ""
+          "source": "a"
         },
         {
           "text": "Page 2",
@@ -50,71 +50,6 @@
             {
               "text": "Page 2",
               "source": ""
-            },
-            {
-              "text": "Dropdown 2",
-              "children": [
-                {
-                  "text": "Page 1",
-                  "source": ""
-                },
-                {
-                  "text": "Page 2",
-                  "source": ""
-                },
-                {
-                  "text": "Dropdown 2",
-                  "children": [
-                    {
-                      "text": "Page 1",
-                      "source": ""
-                    },
-                    {
-                      "text": "Page 2",
-                      "source": ""
-                    },
-                    {
-                      "text": "Dropdown 2",
-                      "children": [
-                        {
-                          "text": "Page 1",
-                          "source": ""
-                        },
-                        {
-                          "text": "Page 2",
-                          "source": ""
-                        },
-                        {
-                          "text": "Dropdown 2",
-                          "children": [
-                            {
-                              "text": "Page 1",
-                              "source": ""
-                            },
-                            {
-                              "text": "Page 2",
-                              "source": ""
-                            },
-                            {
-                              "text": "Dropdown 2",
-                              "children": [
-                                {
-                                  "text": "Page 1",
-                                  "source": ""
-                                },
-                                {
-                                  "text": "Page 2",
-                                  "source": ""
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ]
-                    }
-                  ]
-                }
-              ]
             }
           ]
         }

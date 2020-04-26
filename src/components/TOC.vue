@@ -1,5 +1,6 @@
 <template>
   <div class="toc">
+    <p>Table of Contents</p>
     <a
       class="tocLink"
       v-for="(link, idx) in tocLinks"
@@ -44,39 +45,51 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
 .toc {
-  text-align: left;
   display: flex;
   flex-direction: column;
   width: inherit;
   position: fixed;
+  margin: 1em;
   .tocLink {
-    width: 100%;
+    // width: 100%;
     cursor: pointer;
+    padding: 0.1em 1em;
+    border-radius: 5px;
+    text-align: left;
+    &:hover {
+      background: #f6f8fa;
+      text-decoration: underline;
+      text-decoration-color: #ff6768;
+    }
     &.h1 {
       font-size: 1.2em;
     }
     &.h2 {
       font-size: 1.1em;
-      padding-left: 0.2em;
+      padding-left: 1.4em;
     }
     &.h3 {
       font-size: 1em;
-      padding-left: 0.4em;
+      padding-left: 1.8em;
     }
     &.h4 {
       font-size: 0.9em;
-      padding-left: 0.6em;
+      padding-left: 2.2em;
     }
     &.h5 {
       font-size: 0.8em;
-      padding-left: 0.8em;
+      padding-left: 2.6em;
     }
     &.h6 {
       font-size: 0.7em;
-      padding-left: 1em;
+      padding-left: 3em;
     }
     &.inView {
-      font-weight: bold;
+      //   font-weight: bold;
+      background: #f6f8fa !important;
+      cursor: default;
+      color: #ff6768;
+      text-decoration: none !important;
       //   font-size: 0.7em;
       //   padding-left: 1em;
     }
