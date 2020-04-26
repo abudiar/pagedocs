@@ -54,13 +54,11 @@ body {
     padding: 0.2em 0.4em;
     background: white;
     border-right: 1px solid #eaecef;
-    overflow-y: auto;
     // color: #;
   }
   .content {
     grid-area: content;
     padding: 1em;
-    overflow-y: auto;
   }
 }
 </style>
