@@ -22,5 +22,6 @@ export default {
 <style scoped lang="scss">
 .nav {
   overflow-y: auto;
+  min-width: 14em;
 }
 </style>

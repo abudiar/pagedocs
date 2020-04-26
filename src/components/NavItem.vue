@@ -2,7 +2,7 @@
   <div class="nav-item" :class="{ clickable: !isTitle }">
     <!-- {{ item }} -->
     <p class="item-title" v-if="isTitle">{{ item }}</p>
-    <router-link class="item-link" v-if="isLink" :to="item.source">
+    <router-link class="item-link" v-if="isLink" :to="source">
       {{ item.text }}
     </router-link>
     <a
@@ -12,22 +12,20 @@
     >
       {{ item.text }}
       <span
-        data-v-7ce9b454=""
         role="img"
         aria-label="ChevronRight icon"
         class="chevron mdi mdi-chevron-right transition"
-        :class="{ 'is-open': dropdownOpen }"
         ><svg
-          data-v-7ce9b454=""
           fill="currentColor"
           width="24"
           height="24"
           viewBox="0 0 24 24"
+          class="transition"
           xmlns="http://www.w3.org/2000/svg"
+          :class="{ 'is-open': dropdownOpen }"
         >
           <!---->
           <path
-            data-v-7ce9b454=""
             d="M8.59,16.58L13.17,12L8.59,7.41L10,6L16,12L10,18L8.59,16.58Z"
           ></path></svg
       ></span>
@@ -47,12 +45,10 @@
 </template>
 
 <script>
-// import ChevronRight from "mdi-vue/ChevronRight.vue";
 export default {
   name: "NavItem",
   components: {
     NavItem: () => import("./NavItem.vue"),
-    // ChevronRight,
   },
   props: ["item"],
   data() {
@@ -79,6 +75,12 @@ export default {
       }
       return false;
     },
+    source() {
+      if (this.item.source[0] == "/") {
+        return this.item.source;
+      }
+      return "/" + this.item.source;
+    },
   },
 };
 </script>
@@ -97,38 +99,35 @@ export default {
     margin-bottom: 0.5em;
     font-size: 0.8rem;
     font-weight: bold;
-    padding: 0 1.6em;
-    // color: #ff6768;
+    padding-left: 1.6em;
   }
   .item-link {
-    padding: 0.2em 1.6em;
+    padding: 0.2em;
+    padding-left: 1.6em;
     color: #2c3e50;
     text-decoration: none;
     &:hover {
-      background: #f6f8fa;
       text-decoration: underline;
       text-decoration-color: #ff6768;
     }
   }
   .item-dropdown-name {
-    padding: 0.2em 1.6em;
+    padding: 0.2em;
+    padding-left: 1.6em;
     display: grid;
     grid-template-columns: 1fr auto;
     grid-template-rows: 1fr;
     grid-template-areas: ". chevron";
-    &:hover {
-      background: #f6f8fa;
-    }
     .chevron {
+      padding-left: 2em;
       grid-area: chevron;
-      &.is-open {
+      .is-open {
         transform: rotate(90deg);
       }
     }
   }
   .item-dropdown {
     padding-left: 0.4em;
-    // background: #17223b;
     max-height: 0;
     &.is-open {
       max-height: 10000vh;
@@ -147,15 +146,4 @@ export default {
     transition: all 0.4s ease;
   }
 }
-// ul {
-//   list-style-type: none;
-//   padding: 0;
-// }
-// li {
-//   display: inline-block;
-//   margin: 0 10px;
-// }
-// a {
-//   color: #42b983;
-// }
 </style>

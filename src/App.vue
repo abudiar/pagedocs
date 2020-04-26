@@ -21,6 +21,10 @@ export default {
   created() {
     this.$store.dispatch("getConfig");
   },
+  mounted() {
+    let source = this.$route.path.split("/");
+    console.log(source);
+  },
 };
 </script>
 
@@ -59,7 +63,6 @@ body {
     padding: 0.2em 0.4em;
     background: white;
     border-right: 1px solid #eaecef;
-    // color: #;
   }
   .content {
     grid-area: content;

@@ -67,7 +67,6 @@ export default {
       return this.navItems[this.navItemIdx];
     },
     lastNavItem() {
-      console.log(this.navItems[this.navItemIdx - 1]);
       if (
         this.navItemIdx > 0 &&
         this.isLink(this.navItems[this.navItemIdx - 1])
@@ -76,7 +75,6 @@ export default {
       return null;
     },
     nextNavItem() {
-      console.log(this.navItems[this.navItemIdx + 1]);
       if (
         this.navItemIdx < this.navItems.length - 1 &&
         this.isLink(this.navItems[this.navItemIdx + 1])

@@ -1,5 +1,5 @@
 <template>
-  <div class="toc">
+  <div v-if="tocLinks.length > 0" class="toc">
     <p>Table of Contents</p>
     <a
       class="tocLink"
@@ -51,13 +51,11 @@ export default {
   position: fixed;
   margin: 1em;
   .tocLink {
-    // width: 100%;
     cursor: pointer;
     padding: 0.1em 1em;
     border-radius: 5px;
     text-align: left;
     &:hover {
-      background: #f6f8fa;
       text-decoration: underline;
       text-decoration-color: #ff6768;
     }
@@ -85,13 +83,10 @@ export default {
       padding-left: 3em;
     }
     &.inView {
-      //   font-weight: bold;
       background: #f6f8fa !important;
       cursor: default;
       color: #ff6768;
       text-decoration: none !important;
-      //   font-size: 0.7em;
-      //   padding-left: 1em;
     }
   }
 }
