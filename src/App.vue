@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="titlebar">
-      {{ title }}
+      <p>{{ title }}</p>
     </div>
     <Nav class="nav" />
     <router-view class="content" />
@@ -48,6 +48,11 @@ body {
   .titlebar {
     grid-area: titlebar;
     border-bottom: 1px solid #eaecef;
+    text-align: left;
+    p {
+      font-size: 1.2em;
+      margin: 0.5em 1em;
+    }
   }
   .nav {
     grid-area: nav;

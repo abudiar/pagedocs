@@ -17,7 +17,6 @@ export default new Vuex.Store({
       state.navItems = payload;
     },
     updateIndexMd(state, payload) {
-      console.log(payload);
       state.indexMd = payload;
     },
     updateTitle(state, payload) {
@@ -31,9 +30,8 @@ export default new Vuex.Store({
         method: 'GET',
       })
         .then(async response => {
-          console.log(response.data);
           commit('updateTitle', response.data.title);
-          commit('updateNavItems', await dispatch('parseSources', response.data.navItems));
+          commit('updateNavItems', await dispatch('parseNavItems', response.data.navItems));
           const indexPage = await dispatch('getPage', 'index.md');
           commit('updateIndexMd', indexPage.data);
         })
@@ -41,20 +39,21 @@ export default new Vuex.Store({
           console.log(error);
         })
     },
-    async parseSources({ dispatch }, payload) {
+    async parseNavItems({ dispatch }, payload) {
       const navItems = payload;
       for (let i in navItems) {
         if (navItems[i].source != undefined && navItems[i].source != '') {
           try {
             const page = await dispatch('getPage', navItems[i].source);
             navItems[i]['parsedSource'] = page.data;
+            // console.log(page, page.data.indexOf('\t'));
           }
           catch (err) {
             console.log(err);
           }
         }
         if (navItems[i].children != undefined) {
-          navItems[i].children = await dispatch('parseSources', navItems[i].children);
+          navItems[i].children = await dispatch('parseNavItems', navItems[i].children);
         }
       }
       return navItems;
