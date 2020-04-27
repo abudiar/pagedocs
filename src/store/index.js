@@ -26,7 +26,7 @@ export default new Vuex.Store({
   actions: {
     getConfig({ commit, dispatch }) {
       Vue.axios({
-        url: '/config.json',
+        url: 'config.json',
         method: 'GET',
       })
         .then(async response => {
@@ -61,7 +61,7 @@ export default new Vuex.Store({
     getPage(state, payload) {
       let source = payload[0] == '/' ? payload.substring(1) : payload;
       return Vue.axios({
-        url: '/pages/' + source,
+        url: 'pages/' + source,
         method: 'GET',
       })
     },
